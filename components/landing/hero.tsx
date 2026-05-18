@@ -31,7 +31,7 @@ export function Hero() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="pt-[58px]">
+    <section ref={sectionRef}>
       <div className="max-w-[1140px] mx-auto px-5 lg:px-10 py-16 lg:py-24">
         <div className="grid lg:grid-cols-[55%_45%] gap-12 lg:gap-8 items-start">
           {/* Left Column - Text (Left-aligned, NOT centered) */}

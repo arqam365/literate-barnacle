@@ -68,7 +68,7 @@ export function Footer() {
               <ul className="space-y-3">
                 {links.map((link) => (
                   <li key={link.label}>
-                    {link.isText ? (
+                    {'isText' in link && link.isText ? (
                       <span
                         className="text-[13px] text-white/50"
                         style={{ fontWeight: 300 }}

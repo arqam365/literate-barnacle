@@ -18,9 +18,10 @@ export function Navigation() {
 
   const navLinks = [
     { href: '#platform', label: 'Platform' },
-    { href: '#finance', label: 'Finance' },
-    { href: '#compliance', label: 'Compliance' },
+    { href: '#roadmap', label: 'Roadmap' },
     { href: '#investors', label: 'Investors' },
+    { href: '#team', label: 'Team' },
+    { href: '#access', label: 'Contact' },
   ]
 
   return (

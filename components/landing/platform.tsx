@@ -32,6 +32,12 @@ const capabilities = [
     number: '06',
     title: 'Procurement Intelligence',
     description: 'Spend by category, supplier scorecards, fill-rate trends, anomaly detection. The visibility layer that enables optimization.'
+  },
+  {
+    number: '07',
+    title: 'Near-Expiry & Surplus Channel',
+    description: 'Suppliers list products with 24–72 hour expiry at 30–60% discount. Restaurants get push alerts for matching categories. Platform earns standard commission. Food waste reduced. Margins protected.',
+    highlight: true,
   }
 ]
 
@@ -94,8 +100,15 @@ export function Platform() {
           }}
         >
           {capabilities.map((cap) => (
-            <div key={cap.number} className="bg-white p-8">
-              <span className="font-mono text-[11px] text-[#1A4BD8] block mb-4">{cap.number}</span>
+            <div key={cap.number} className={`p-8 ${'highlight' in cap && cap.highlight ? 'bg-[#F6F5F1]' : 'bg-white'}`}>
+              <div className="flex items-center gap-2 mb-4">
+                <span className="font-mono text-[11px] text-[#1A4BD8]">{cap.number}</span>
+                {'highlight' in cap && cap.highlight && (
+                  <span className="text-[10px] font-medium text-[#0B6644] uppercase border border-[#0B664440] bg-[#0B664408] px-2 py-0.5 rounded" style={{ letterSpacing: '0.05em' }}>
+                    ESG · Phase 2
+                  </span>
+                )}
+              </div>
               <h3 className="text-[18px] text-[#0C1E35] font-medium mb-3">{cap.title}</h3>
               <p className="text-[14px] text-[#5A6A7D]" style={{ fontWeight: 300, lineHeight: 1.6 }}>
                 {cap.description}

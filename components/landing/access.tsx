@@ -7,13 +7,14 @@ type Status = 'idle' | 'loading' | 'success' | 'error'
 
 interface FormState {
   name: string
+  email: string
   company: string
   contact: string
   city: string
   message: string
 }
 
-const EMPTY: FormState = { name: '', company: '', contact: '', city: '', message: '' }
+const EMPTY: FormState = { name: '', email: '', company: '', contact: '', city: '', message: '' }
 
 const TABS: { id: FormType; label: string; cta: string; icon: string }[] = [
   { id: 'investor', label: 'Investor Deck', cta: 'Request Deck', icon: '↗' },
@@ -31,11 +32,12 @@ const CONFIG: Record<FormType, {
   deckLink?: boolean
 }> = {
   investor: {
-    fields: ['name', 'company', 'contact'],
+    fields: ['name', 'email', 'company', 'contact'],
     placeholders: {
       name: 'Your name',
+      email: 'Email address',
       company: 'Fund or firm name',
-      contact: 'Email address',
+      contact: 'WhatsApp or phone',
     },
     helpText: 'Deck delivered to your email within 24 hours.',
     successTitle: 'Request received.',
@@ -43,9 +45,10 @@ const CONFIG: Record<FormType, {
     deckLink: true,
   },
   restaurant: {
-    fields: ['name', 'company', 'city', 'contact'],
+    fields: ['name', 'email', 'company', 'city', 'contact'],
     placeholders: {
       name: 'Your name',
+      email: 'Email address',
       company: 'Restaurant name',
       city: 'Riyadh · Jeddah · Other',
       contact: 'WhatsApp number',
@@ -55,12 +58,13 @@ const CONFIG: Record<FormType, {
     successBody: 'Riyadh pilot is limited to 30 restaurants. We\'ll be in touch within 48 hours to confirm your spot and arrange a demo.',
   },
   supplier: {
-    fields: ['name', 'company', 'city', 'contact', 'message'],
+    fields: ['name', 'email', 'company', 'city', 'contact', 'message'],
     placeholders: {
       name: 'Your name',
+      email: 'Email address',
       company: 'Company name',
       city: 'City',
-      contact: 'WhatsApp or email',
+      contact: 'WhatsApp or phone',
       message: 'What do you supply? (produce, dry goods, dairy, specialty…)',
     },
     helpText: 'Riyadh pilot open to 15 anchor suppliers.',
@@ -68,11 +72,12 @@ const CONFIG: Record<FormType, {
     successBody: 'We review every supplier application. Expect a call within 48 hours. Riyadh pilot targets 15 anchor suppliers.',
   },
   partner: {
-    fields: ['name', 'company', 'contact', 'message'],
+    fields: ['name', 'email', 'company', 'contact', 'message'],
     placeholders: {
       name: 'Your name',
+      email: 'Email address',
       company: 'Organisation name',
-      contact: 'Email address',
+      contact: 'WhatsApp or phone',
       message: 'Describe the opportunity — integration, distribution, investment, advisory…',
     },
     helpText: 'We review every partnership enquiry. Response within 3 business days.',
@@ -233,7 +238,7 @@ export function Access() {
                   ) : (
                     <input
                       key={field}
-                      type="text"
+                      type={field === 'email' ? 'email' : 'text'}
                       required={field !== 'city'}
                       placeholder={cfg.placeholders[field]}
                       value={form[field]}
